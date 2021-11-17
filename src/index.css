@@ -1,0 +1,102 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+input,
+button {
+  outline: none;
+  background-color: transparent;
+  border: none;
+  font-family: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+p {
+  margin: 0;
+}
+
+input[type='checkbox'] {
+  margin: 0;
+}
+
+input:-internal-autofill-selected {
+  border-width: 0px;
+  border: none;
+  outline: none !important;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+}
+
+textarea {
+  border: none;
+  outline: none;
+  resize: none;
+  padding: 0;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+fieldset,
+legend {
+  margin-inline: 0;
+  padding-block: 0;
+  padding-inline: 0;
+  padding: 0;
+  margin: 0;
+}
+
+button,
+textarea,
+input,
+select,
+a {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
