@@ -1,10 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { weatherAPI } from '../api/weatherAPI';
+import { rootReducer } from './reducers/rootReducer';
 
 export const store = configureStore({
-  reducer: {
-    [weatherAPI.reducerPath]: weatherAPI.reducer,
-  },
+  reducer: rootReducer,
   devTools: process.env.NODE_ENV !== 'production',
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware().concat(weatherAPI.middleware),

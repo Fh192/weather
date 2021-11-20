@@ -1,0 +1,139 @@
+.currentWeather {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 500px;
+  width: 100%;
+  height: 300px;
+  border-radius: 8px;
+  background: #fff;
+
+  object-fit: contain;
+  padding: 20px;
+  color: #fff;
+}
+
+.rain,
+.snow {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50%;
+}
+
+.rain {
+  background: url('../../assets/rain.png');
+}
+.snow {
+  background: url('../../assets/snow.png');
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.title span {
+  font-weight: 600;
+}
+
+.time {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.time * {
+  opacity: 0.7;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  padding-bottom: 10px;
+}
+
+.tempWrap {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.temp span {
+  font-weight: 600;
+  font-size: 48px;
+  line-height: 48px;
+}
+
+.temp span::after {
+  content: '\00B0';
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon img {
+  width: 50px;
+  height: 50px;
+}
+
+.feelings {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.condition span {
+  font-size: 15px;
+  line-height: 15px;
+}
+
+.feels span {
+  opacity: 0.7;
+  font-size: 14px;
+  line-height: 15px;
+}
+
+.feels span::after {
+  content: '\00B0';
+}
+
+.params {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.param {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.param span {
+  font-size: 14px;
+  line-height: 24px;
+  font-weight: 500;
+  opacity: 0.8;
+}
+.hourlyWrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} 

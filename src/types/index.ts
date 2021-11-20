@@ -51,7 +51,7 @@ export interface IAstro {
 }
 
 export interface IHour extends ICommon {
-  time_epoch: number;
+  time: number;
   windchill_c: number;
   chance_of_rain: number; // as %
   chance_of_snow: number; // as %
@@ -71,7 +71,7 @@ export interface IDay {
 }
 
 export interface ICurrentWeather extends ICommon {
-  last_updated_epoch: number;
+  last_updated: number;
   air_quality: IAirQuality;
   feelslike_c: number;
 }
@@ -90,7 +90,7 @@ export interface IWeatherResponse {
 
 export interface IForecastResponse extends IWeatherResponse {
   forecast: {
-    forecastday: IForecast[];
+    forecastday: [IForecast];
   };
 }
 
