@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 export const weatherParamsSlice = createSlice({
   name: 'weatherParams',
   initialState: {
-    city: 'pekin',
+    city: 'astrakhan',
   },
   reducers: {
     setCity: (state, action: PayloadAction<string>) => {
