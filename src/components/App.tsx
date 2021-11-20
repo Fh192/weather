@@ -1,4 +1,5 @@
 import React from 'react';
+import { AirQuality } from './AirQuality/AirQuality';
 import './App.css';
 import { Astronomy } from './Astronomy/Astronomy';
 import { Current } from './Current/Current';
@@ -11,7 +12,7 @@ const App: React.FC = () => {
           <Current />
           <div className='col'>
             <Astronomy />
-            <div className='a'></div>
+            <AirQuality />
           </div>
         </div>
       </div>

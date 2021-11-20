@@ -1,0 +1,83 @@
+.airQuality {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 145px;
+  width: 100%;
+  background: #fff;
+  border-radius: 8px;
+  padding: 10px;
+  padding-top: 0;
+}
+
+.header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.title span {
+  font-weight: 500;
+}
+
+.date {
+  position: absolute;
+  bottom: -9px;
+  background: #fff;
+  padding: 0 3px;
+  display: flex;
+  align-items: center;
+}
+
+.date span {
+  font-weight: 500;
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  height: 100%;
+  padding: 0 30px;
+}
+
+.US_EPA {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.US_EPA span {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.params {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  grid-template-rows: 1fr 1fr;
+  justify-items: start;
+  gap: 10px 20px;
+}
+
+.param {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.param span {
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+.param sub {
+  font-size: 10px;
+}
