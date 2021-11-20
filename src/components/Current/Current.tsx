@@ -61,7 +61,7 @@ export const Current: React.FC = () => {
               <span>{`${name}, ${country}`}</span>
             </div>
             <div className={s.time}>
-              <span>Last update</span>
+              <span>Now</span>
               <time dateTime={date.toISOString()}>{time}</time>
             </div>
           </div>
