@@ -8,7 +8,7 @@ import pressureIcon from '../../assets/weatherParamIcons/pressure.svg';
 import windIcon from '../../assets/weatherParamIcons/wind.svg';
 import { getWeatherBackground } from '../../services/getWeatherBackground';
 import { Hourly } from './Hourly/Hourly';
-import { useSelector } from 'react-redux';
+import { useSelector } from '../../hooks/useSelector';
 import { RootState } from '../../store/store';
 import { getWeatherCondition } from '../../services/getWeatherCondition';
 

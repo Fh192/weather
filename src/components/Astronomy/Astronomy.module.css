@@ -1,0 +1,106 @@
+.astronomy {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 145px;
+  width: 100%;
+  background: #fff;
+  border-radius: 8px;
+  padding: 10px;
+  padding-top: 0;
+}
+
+.header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.title span {
+  font-weight: 500;
+}
+
+.date {
+  position: absolute;
+  bottom: -9px;
+  background: #fff;
+  padding: 0 3px;
+  display: flex;
+  align-items: center;
+}
+
+.date span {
+  font-weight: 500;
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+.main {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+
+.sun,
+.moon {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.icon,
+.icon img {
+  width: 70px;
+  height: 70px;
+}
+
+.moon .icon {
+  position: relative;
+}
+
+.borderMoon {
+  position: absolute;
+  top: 0px;
+  left: 0%;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.moonIllumination {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+}
+
+.moonIllumination span {
+  font-size: 14px;
+  font-weight: 500;
+  color: #000;
+  opacity: 0.7;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.info span {
+  font-size: 14px;
+  font-weight: 500;
+  opacity: 0.7;
+}

@@ -77,7 +77,7 @@ export interface ICurrentWeather extends ICommon {
 }
 
 export interface IForecast {
-  date_epoch: number;
+  date: number;
   day: IDay;
   astro: IAstro;
   hour: IHour[];
