@@ -99,3 +99,5 @@ export interface ISearch extends ILocation {
 }
 
 export type IForecastDays = 1 | 2 | 3;
+
+export type ICoords = { lat: number; lon: number };

@@ -1,14 +1,25 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { ICoords } from '../../types';
+
+const initialState = {
+  city: 'moscow',
+  coords: JSON.parse(
+    localStorage.getItem('coords') || '{ "lat": 55.75, "lon": 37.62 }'
+  ) as ICoords,
+};
+
 export const weatherParamsSlice = createSlice({
   name: 'weatherParams',
-  initialState: {
-    city: 'moscow',
-  },
+  initialState,
   reducers: {
     setCity: (state, action: PayloadAction<string>) => {
       state.city = action.payload;
     },
+    setCoords: (state, action: PayloadAction<ICoords>) => {
+      state.coords = action.payload;
+      localStorage.setItem('coords', JSON.stringify(action.payload));
+    },
   },
 });
 
-export const { setCity } = weatherParamsSlice.actions;
+export const { setCity, setCoords } = weatherParamsSlice.actions;

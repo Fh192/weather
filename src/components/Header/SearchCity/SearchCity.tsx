@@ -5,19 +5,22 @@ import { useSearchQuery } from '../../../api/weatherAPI';
 import useOnClickOutside from '../../../hooks/useOnClickOutside';
 import { Preloader } from '../../Preloader/Preloader';
 import { useDispatch } from 'react-redux';
-import { setCity } from '../../../store/reducers/weatherParamsSlice';
+import { setCity, setCoords } from '../../../store/reducers/weatherParamsSlice';
 import { useNavigate } from 'react-router';
+import { ICoords } from '../../../types';
+import { useSelector } from '../../../hooks/useSelector';
 
 export const SearchCity: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const { lat, lon } = useSelector(s => s.weatherParams.coords);
   const ref = useRef<HTMLDivElement>(null);
   const [searchCity, setSearchCity] = useState('');
   const [suggestionsVisible, setSuggestionsVisible] = useState(false);
 
   const { data: suggestions = [], isFetching } = useSearchQuery(
-    searchCity.length >= 3 ? searchCity : ''
+    searchCity.length >= 3 ? searchCity : `${lat} ${lon}`
   );
 
   const inputClickHandler = () => {
@@ -26,11 +29,16 @@ export const SearchCity: React.FC = () => {
     }
   };
 
-  const suggestionSelectHandler = (suggestion: string) => {
+  const suggestionSelectHandler = (suggestion: string, coords: ICoords) => {
+    const { lon, lat } = coords;
+    navigate({ search: `?lat=${lat}&lon=${lon}` });
+
     dispatch(setCity(suggestion));
-    navigate({ search: `?city=${suggestion}` });
+    dispatch(setCoords(coords));
+
     setSearchCity('');
     setSuggestionsVisible(false);
+    window.scrollTo({ behavior: 'smooth', top: 0 });
   };
 
   useEffect(() => {
@@ -69,7 +77,12 @@ export const SearchCity: React.FC = () => {
           {!isFetching ? (
             !!suggestions.length ? (
               suggestions.map(s => (
-                <li key={s.id} onClick={() => suggestionSelectHandler(s.name)}>
+                <li
+                  key={s.id}
+                  onClick={() =>
+                    suggestionSelectHandler(s.name, { lat: s.lat, lon: s.lon })
+                  }
+                >
                   {s.name}
                 </li>
               ))

@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { useQuery } from '../../hooks/useQuery';
 import { useSelector } from '../../hooks/useSelector';
-import { setCity } from '../../store/reducers/weatherParamsSlice';
+import { setCoords } from '../../store/reducers/weatherParamsSlice';
 import { AirQuality } from '../AirQuality/AirQuality';
 import { Astronomy } from '../Astronomy/Astronomy';
 import { Current } from '../Current/Current';
@@ -14,14 +14,16 @@ export const Main: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { city } = useSelector(s => s.weatherParams);
   const query = useQuery();
-  const queryCity = query.get('city');
+  const { coords } = useSelector(s => s.weatherParams);
+  const lat = Number(query.get('lat')) || coords.lat;
+  const lon = Number(query.get('lon')) || coords.lon;
 
   useEffect(() => {
-    if (queryCity) dispatch(setCity(queryCity));
-    navigate({ search: `?city=${queryCity || city}` });
-  }, [city, queryCity, navigate, dispatch]);
+    dispatch(setCoords({ lat, lon }));
+    setCoords({ lat, lon });
+    navigate({ search: `?lat=${lat}&lon=${lon}` });
+  }, [lat, lon, navigate, dispatch]);
 
   return (
     <main className={s.main}>

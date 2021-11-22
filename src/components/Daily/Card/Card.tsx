@@ -67,7 +67,7 @@ export const Card: React.FC<IForecast> = ({ date: dt, hour }) => {
               : 'evening';
 
           return (
-            <>
+            <React.Fragment key={time}>
               <div className={s.tempWrap}>
                 <div className={s.dayPart}>{dayPart}</div>
                 <div className={s.temp}>
@@ -101,7 +101,7 @@ export const Card: React.FC<IForecast> = ({ date: dt, hour }) => {
                 <span>{precipChance}</span>
                 <span className={s.unit}>%</span>
               </div>
-            </>
+            </React.Fragment>
           );
         })}
       </div>

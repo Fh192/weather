@@ -9,15 +9,22 @@ import windIcon from '../../assets/weatherParamIcons/wind.svg';
 import { getWeatherBackground } from '../../services/getWeatherBackground';
 import { Hourly } from './Hourly/Hourly';
 import { useSelector } from '../../hooks/useSelector';
-import { RootState } from '../../store/store';
 import { getWeatherCondition } from '../../services/getWeatherCondition';
+import geolocation from '../../assets/geolocation.svg';
+import { setCoords } from '../../store/reducers/weatherParamsSlice';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router';
 
 export const Current: React.FC = () => {
-  const { city } = useSelector((s: RootState) => s.weatherParams);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const { coords } = useSelector(s => s.weatherParams);
   const { data: forecast, isFetching } = useGetWeatherForecastQuery({
-    city,
+    coords,
     days: 1,
   });
+
   if (!forecast) return null;
   const {
     location: { name, country },
@@ -47,6 +54,14 @@ export const Current: React.FC = () => {
   const isSnow = getWeatherCondition(condition) === 'snow';
   const isSleet = getWeatherCondition(condition) === 'sleet';
 
+  const getLocation = () => {
+    navigator.geolocation.getCurrentPosition(({ coords }) => {
+      const { latitude, longitude } = coords;
+      dispatch(setCoords({ lat: latitude, lon: longitude }));
+      navigate({ search: `?lat=${latitude}&lon=${longitude}` });
+    });
+  };
+
   return (
     <div
       className={s.currentWeather}
@@ -57,12 +72,17 @@ export const Current: React.FC = () => {
           {(isRain || isSleet) && <div className={s.rain} />}
           {(isSnow || isSleet) && <div className={s.snow} />}
           <div className={s.header}>
-            <div className={s.title}>
-              <span>{`${name}, ${country}`}</span>
+            <div className={s.col}>
+              <div className={s.title}>
+                <span>{`${name}, ${country}`}</span>
+              </div>
+              <div className={s.time}>
+                <span>Now</span>
+                <time dateTime={date.toISOString()}>{time}</time>
+              </div>
             </div>
-            <div className={s.time}>
-              <span>Now</span>
-              <time dateTime={date.toISOString()}>{time}</time>
+            <div className={s.location} onClick={getLocation}>
+              <img src={geolocation} alt='your location' />
             </div>
           </div>
           <div className={s.main}>

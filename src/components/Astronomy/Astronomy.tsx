@@ -4,10 +4,11 @@ import { useGetWeatherForecastQuery } from '../../api/weatherAPI';
 import { useSelector } from '../../hooks/useSelector';
 import sun from '../../assets/sun.svg';
 import moon from '../../assets/moon.svg';
+import { RootState } from '../../store/store';
 
 export const Astronomy: React.FC = () => {
-  const { city } = useSelector(s => s.weatherParams);
-  const { data: forecast } = useGetWeatherForecastQuery({ city, days: 1 });
+  const { coords } = useSelector((s: RootState) => s.weatherParams);
+  const { data: forecast } = useGetWeatherForecastQuery({ coords, days: 1 });
   if (!forecast) return null;
   const {
     astro: {

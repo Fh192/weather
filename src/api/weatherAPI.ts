@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import {
+  ICoords,
   IForecastDays,
   IForecastResponse,
   ISearch,
@@ -12,24 +13,17 @@ export const weatherAPI = createApi({
   reducerPath: 'weatherAPI',
   baseQuery: fetchBaseQuery({ baseUrl: 'https://api.weatherapi.com/v1/' }),
   endpoints: b => ({
-    getCurrentWeather: b.query<IWeatherResponse, string>({
-      query: city => `current.json?key=${API_KEY}&q=${city}&aqi=yes`,
-    }),
     getWeatherForecast: b.query<
       IForecastResponse,
-      { city: string; days?: IForecastDays }
+      { coords: ICoords; days?: IForecastDays }
     >({
-      query: ({ city, days = 3 }) =>
-        `forecast.json?key=${API_KEY}&q=${city}&days=${days}&aqi=yes`,
+      query: ({ coords, days = 3 }) =>
+        `forecast.json?key=${API_KEY}&q=${`${coords.lat} ${coords.lon}`}&days=${days}&aqi=yes`,
     }),
     search: b.query<ISearch[], string>({
-      query: city => `search.json?key=${API_KEY}&q=${city}`,
+      query: location => `search.json?key=${API_KEY}&q=${location}`,
     }),
   }),
 });
 
-export const {
-  useGetCurrentWeatherQuery,
-  useGetWeatherForecastQuery,
-  useSearchQuery,
-} = weatherAPI;
+export const { useGetWeatherForecastQuery, useSearchQuery } = weatherAPI;

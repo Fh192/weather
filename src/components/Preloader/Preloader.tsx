@@ -3,7 +3,7 @@ import styles from './Preloader.module.css';
 
 export const Preloader: React.FC<{ size?: string; color?: string }> = ({
   size = '50px',
-  color = '#0d1117',
+  color = '#ECEEF2',
 }) => {
   return (
     <div className={styles.preloader}>

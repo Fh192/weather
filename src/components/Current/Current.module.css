@@ -36,8 +36,33 @@
 
 .header {
   display: flex;
+  justify-content: space-between;
+}
+
+.col {
+  display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.location {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.location img {
+  width: 30px;
+  height: 30px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  padding: 7px;
+}
+
+.location:hover img {
+  background: rgba(255, 255, 255, 0.3);
 }
 
 .title span {
@@ -136,4 +161,4 @@
   display: flex;
   align-items: center;
   justify-content: center;
-} 
+}

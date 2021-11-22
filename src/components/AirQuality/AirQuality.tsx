@@ -4,8 +4,8 @@ import { useSelector } from '../../hooks/useSelector';
 import s from './AirQuality.module.css';
 
 export const AirQuality: React.FC = () => {
-  const { city } = useSelector(s => s.weatherParams);
-  const { data: forecast } = useGetWeatherForecastQuery({ city, days: 1 });
+  const { coords } = useSelector(s => s.weatherParams);
+  const { data: forecast } = useGetWeatherForecastQuery({ coords, days: 1 });
 
   if (!forecast) return null;
 
