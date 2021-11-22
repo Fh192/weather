@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="375" height="379" viewBox="0 0 375 379" fill="none">
+<path d="M0 185.5C0 83.0512 83.0512 0 185.5 0V0C287.949 0 371 83.0512 371 185.5V185.5C371 287.949 287.949 371 185.5 371V371C83.0512 371 0 287.949 0 185.5V185.5Z" fill="#DCDCDC"/>
+<mask id="mask0_234_284" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="371" height="371">
+<circle cx="185.5" cy="185.5" r="185.5" fill="#DCDCDC"/>
+</mask>
+<g mask="url(#mask0_234_284)">
+<circle cx="208" cy="173" r="31" fill="#CCCBCB"/>
+<circle cx="296" cy="212" r="26" fill="#C4C4C4"/>
+<circle cx="300.5" cy="127.5" r="21.5" fill="#C4C4C4"/>
+<circle cx="258.5" cy="273.5" r="21.5" fill="#C4C4C4"/>
+<circle cx="147.5" cy="189.5" r="7.5" fill="#C4C4C4"/>
+<circle cx="158.5" cy="199.5" r="4.5" fill="#C4C4C4"/>
+<circle cx="116" cy="109" r="42" fill="#C4C4C4"/>
+<circle cx="60.5" cy="200.5" r="48.5" fill="#C4C4C4"/>
+<circle cx="146.5" cy="219.5" r="13.5" fill="#C4C4C4"/>
+<circle cx="138" cy="286" r="23" fill="#C4C4C4"/>
+<circle cx="90" cy="266" r="9" fill="#C4C4C4"/>
+<circle cx="86" cy="300" r="14" fill="#C4C4C4"/>
+<circle cx="216.5" cy="44.5" r="14.5" fill="#C4C4C4"/>
+<circle cx="221.5" cy="94.5" r="6.5" fill="#C4C4C4"/>
+<circle cx="213.5" cy="244.5" r="5.5" fill="#C4C4C4"/>
+<circle cx="225" cy="362" r="47" fill="#C4C4C4"/>
+<rect x="186" width="384" height="384" fill="#535D74" fill-opacity="0.7"/>
+</g>
+</svg>

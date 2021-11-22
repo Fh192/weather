@@ -38,15 +38,7 @@ export interface IAstro {
   sunset: string;
   moonrise: string;
   moonset: string;
-  moon_phase:
-    | 'New Moon'
-    | 'Waxing Crescent'
-    | 'First Quarter'
-    | 'Waxing Gibbous'
-    | 'Full Moon'
-    | 'Waning Gibbous'
-    | 'Last Quarter'
-    | 'Waning Crescent';
+  moon_phase: IMoonPhase;
   moon_illumination: string; // as %
 }
 
@@ -101,3 +93,13 @@ export interface ISearch extends ILocation {
 export type IForecastDays = 1 | 2 | 3;
 
 export type ICoords = { lat: number; lon: number };
+
+export type IMoonPhase =
+  | 'New Moon'
+  | 'Waxing Crescent'
+  | 'First Quarter'
+  | 'Waxing Gibbous'
+  | 'Full Moon'
+  | 'Waning Gibbous'
+  | 'Last Quarter'
+  | 'Waning Crescent';

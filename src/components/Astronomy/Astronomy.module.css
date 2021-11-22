@@ -8,6 +8,7 @@
   border-radius: 8px;
   padding: 10px;
   padding-top: 0;
+  overflow: hidden;
 }
 
 .header {
@@ -61,35 +62,6 @@
 
 .moon .icon {
   position: relative;
-}
-
-.borderMoon {
-  position: absolute;
-  top: 0px;
-  left: 0%;
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  background: #fff;
-}
-
-.moonIllumination {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  z-index: 1;
-}
-
-.moonIllumination span {
-  font-size: 14px;
-  font-weight: 500;
-  color: #000;
-  opacity: 0.7;
 }
 
 .info {

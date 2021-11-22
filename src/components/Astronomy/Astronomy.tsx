@@ -3,22 +3,15 @@ import s from './Astronomy.module.css';
 import { useGetWeatherForecastQuery } from '../../api/weatherAPI';
 import { useSelector } from '../../hooks/useSelector';
 import sun from '../../assets/sun.svg';
-import moon from '../../assets/moon.svg';
 import { RootState } from '../../store/store';
+import { getMoonIconByPhase } from '../../services/getMoonIconByPhase';
 
 export const Astronomy: React.FC = () => {
   const { coords } = useSelector((s: RootState) => s.weatherParams);
   const { data: forecast } = useGetWeatherForecastQuery({ coords, days: 1 });
   if (!forecast) return null;
   const {
-    astro: {
-      moon_illumination,
-      moon_phase,
-      moonrise,
-      moonset,
-      sunrise,
-      sunset,
-    },
+    astro: { moon_phase, moonrise, moonset, sunrise, sunset },
     date: dt,
     day: { uv },
   } = forecast.forecast.forecastday[0];
@@ -61,14 +54,7 @@ export const Astronomy: React.FC = () => {
         </div>
         <div className={s.moon}>
           <div className={s.icon}>
-            <img src={moon} alt='moon' />
-            <div className={s.moonIllumination}>
-              <span>{`${moon_illumination}%`}</span>
-            </div>
-            <div
-              className={s.borderMoon}
-              style={{ left: `${moon_illumination}%` }}
-            />
+            <img src={getMoonIconByPhase(moon_phase)} alt='moon' />
           </div>
           <div className={s.info}>
             <div>
