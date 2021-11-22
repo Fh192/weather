@@ -56,6 +56,10 @@
 
 .US_EPA span {
   font-size: 15px;
+}
+
+.US_EPA_Index,
+.US_EPA_Category span {
   font-weight: 500;
 }
 

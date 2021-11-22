@@ -1,0 +1,88 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+  width: 100%;
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.date {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  justify-self: start;
+}
+
+.day span {
+  font-size: 56px;
+  font-weight: 500;
+}
+
+.weekdayMonth {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.weekdayMonth span {
+  font-size: 14px;
+  line-height: 1.43;
+  color: #939cb0;
+}
+
+.main {
+  display: grid;
+  height: 100%;
+  grid-template-columns: 70px 120px auto repeat(5, minmax(110px, 200px));
+  grid-template-rows: repeat(5, 1fr);
+  align-items: center;
+  justify-items: center;
+  padding: 0 30px;
+  margin-top: -70px;
+}
+
+.title {
+  text-align: center;
+  color: #939cb0;
+  font-size: 14px;
+}
+.dayPart {
+  color: #939cb0;
+  font-size: 12px;
+}
+
+.tempWrap {
+  display: flex;
+  flex-direction: column;
+  justify-self: start;
+}
+
+.temp span::after {
+  content: '\00B0';
+}
+
+.icon,
+.icon img {
+  width: 50px;
+  height: 50px;
+}
+
+.condition {
+  text-align: center;
+}
+
+.unit {
+  font-size: 14px;
+  opacity: 0.7;
+}

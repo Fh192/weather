@@ -1,6 +1,7 @@
 .App {
   display: flex;
   flex-direction: column;
+  gap: 20px;
   min-height: 100vh;
   color: #080808;
   background: #eceef2;
@@ -12,7 +13,8 @@
   max-width: 1200px;
   width: 100%;
   margin: 0 auto;
-  padding: 20px;
+  margin-bottom: 20px;
+  gap: 20px;
 }
 
 .row {

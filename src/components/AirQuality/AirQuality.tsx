@@ -44,10 +44,15 @@ export const AirQuality: React.FC = () => {
       </div>
       <div className={s.main}>
         <div className={s.US_EPA}>
-          <span>US-EPA index — {US_EPA_Index}</span>
+          <span>
+            US-EPA index —{' '}
+            <span className={s.US_EPA_Index}>{US_EPA_Index}</span>
+          </span>
           <span>
             Air quality is&nbsp;
-            <span className={s.US_EPA_Category}>{US_EPA_Category}</span>
+            <span className={s.US_EPA_Category}>
+              <span>{US_EPA_Category}</span>
+            </span>
           </span>
         </div>
         <div className={s.params}>

@@ -90,7 +90,7 @@ export interface IWeatherResponse {
 
 export interface IForecastResponse extends IWeatherResponse {
   forecast: {
-    forecastday: [IForecast];
+    forecastday: IForecast[];
   };
 }
 
@@ -98,4 +98,4 @@ export interface ISearch extends ILocation {
   id: number;
 }
 
-export type IForecastDays = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+export type IForecastDays = 1 | 2 | 3;
