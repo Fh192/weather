@@ -1,18 +1,17 @@
 import React, { useEffect } from 'react';
+import { Navigate, Route, Routes } from 'react-router';
 import { useSelector } from '../hooks/useSelector';
-import { AirQuality } from './AirQuality/AirQuality';
 import './App.css';
-import { Astronomy } from './Astronomy/Astronomy';
-import { Current } from './Current/Current';
-import { Daily } from './Daily/Daily';
 import { Header } from './Header/Header';
+import { Main } from './Main/Main';
 
 const App: React.FC = () => {
   const { city } = useSelector(s => s.weatherParams);
 
   useEffect(() => {
+    const location = city.split(',')[0];
     document.title = `Weather in ${
-      city.charAt(0).toUpperCase() + city.slice(1)
+      location.charAt(0).toUpperCase() + location.slice(1)
     }`;
   }, [city]);
 
@@ -20,14 +19,10 @@ const App: React.FC = () => {
     <div className='App'>
       <Header />
       <div className='container'>
-        <div className='row'>
-          <Current />
-          <div className='col'>
-            <Astronomy />
-            <AirQuality />
-          </div>
-        </div>
-        <Daily />
+        <Routes>
+          <Route path='/forecast' element={<Main />} />
+          <Route path='*' element={<Navigate to='/forecast' />} />
+        </Routes>
       </div>
     </div>
   );

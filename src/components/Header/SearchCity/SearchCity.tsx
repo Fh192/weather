@@ -6,10 +6,12 @@ import useOnClickOutside from '../../../hooks/useOnClickOutside';
 import { Preloader } from '../../Preloader/Preloader';
 import { useDispatch } from 'react-redux';
 import { setCity } from '../../../store/reducers/weatherParamsSlice';
+import { useNavigate } from 'react-router';
 
 export const SearchCity: React.FC = () => {
   const dispatch = useDispatch();
- 
+  const navigate = useNavigate();
+
   const ref = useRef<HTMLDivElement>(null);
   const [searchCity, setSearchCity] = useState('');
   const [suggestionsVisible, setSuggestionsVisible] = useState(false);
@@ -26,6 +28,7 @@ export const SearchCity: React.FC = () => {
 
   const suggestionSelectHandler = (suggestion: string) => {
     dispatch(setCity(suggestion));
+    navigate({ search: `?city=${suggestion}` });
     setSearchCity('');
     setSuggestionsVisible(false);
   };
