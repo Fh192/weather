@@ -11,7 +11,7 @@ import { Hourly } from './Hourly/Hourly';
 import { useSelector } from '../../hooks/useSelector';
 import { getWeatherCondition } from '../../services/getWeatherCondition';
 import geolocation from '../../assets/geolocation.svg';
-import { setCoords } from '../../store/reducers/weatherParamsSlice';
+import { setCity, setCoords } from '../../store/reducers/weatherParamsSlice';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { transformTemp } from '../../services/transformTemp';
@@ -59,6 +59,7 @@ export const Current: React.FC = () => {
     navigator.geolocation.getCurrentPosition(({ coords }) => {
       const { latitude, longitude } = coords;
       dispatch(setCoords({ lat: latitude, lon: longitude }));
+      dispatch(setCity(name));
       navigate({ search: `?lat=${latitude}&lon=${longitude}` });
     });
   };
