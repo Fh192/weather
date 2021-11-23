@@ -14,6 +14,7 @@ import geolocation from '../../assets/geolocation.svg';
 import { setCoords } from '../../store/reducers/weatherParamsSlice';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
+import { transformTemp } from '../../services/transformTemp';
 
 export const Current: React.FC = () => {
   const dispatch = useDispatch();
@@ -46,8 +47,8 @@ export const Current: React.FC = () => {
     hour: '2-digit',
     minute: '2-digit',
   });
-  const temp = `${temp_c > 0 ? '+' : ''}${temp_c}`;
-  const feelsTemp = `${feelslike_c > 0 ? '+' : ''}${feelslike_c}`;
+  const temp = transformTemp(temp_c);
+  const feelsTemp = transformTemp(feelslike_c);
   const wind_mph = (wind_kph / 3.6).toFixed(1);
 
   const isRain = getWeatherCondition(condition) === 'rain';

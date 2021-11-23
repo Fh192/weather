@@ -1,5 +1,6 @@
 import React from 'react';
 import { getWeatherIcon } from '../../../../services/getWeatherIcon';
+import { transformTemp } from '../../../../services/transformTemp';
 import { IHour } from '../../../../types';
 import s from '../Hourly.module.css';
 
@@ -14,7 +15,7 @@ export const Hour: React.FC<IHour> = ({
     hour: '2-digit',
     minute: '2-digit',
   });
-  const temp = `${temp_c > 0 ? '+' : ''}${temp_c.toFixed(0)}`;
+  const temp = transformTemp(Number(temp_c.toFixed(0)));
 
   return (
     <div className={s.hour}>
