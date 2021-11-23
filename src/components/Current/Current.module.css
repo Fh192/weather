@@ -8,7 +8,6 @@
   height: 300px;
   border-radius: 8px;
   background: #fff;
-
   object-fit: contain;
   padding: 20px;
   color: #fff;
@@ -140,6 +139,7 @@
 .params {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 10px;
 }
 
@@ -161,4 +161,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+@media screen and (max-width: 700px) {
+  .currentWeather {
+    max-width: unset;
+    height: auto;
+  }
 }

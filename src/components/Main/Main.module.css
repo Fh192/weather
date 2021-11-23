@@ -19,3 +19,18 @@
   height: 100%;
   gap: 10px;
 }
+
+@media screen and (max-width: 700px) {
+  .row {
+    flex-direction: column;
+  }
+
+  .col {
+    flex-direction: column-reverse;
+  }
+}
+@media screen and (max-width: 500px) {
+  .col {
+    flex-direction: column;
+  }
+}

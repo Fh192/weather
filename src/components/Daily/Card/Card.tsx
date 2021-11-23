@@ -1,5 +1,6 @@
 import React from 'react';
 import { getWeatherIcon } from '../../../services/getWeatherIcon';
+import { transformTemp } from '../../../services/transformTemp';
 import { IForecast } from '../../../types';
 import s from './Card.module.css';
 
@@ -31,14 +32,12 @@ export const Card: React.FC<IForecast> = ({ date: dt, hour }) => {
       <div className={s.main}>
         <span></span>
         <span></span>
-        <span></span>
-        <span className={s.title}>Pressure</span>
-        <span className={s.title}>Humidity</span>
+        <span className={`${s.title} ${s.condition}`}></span>
+        <span className={`${s.title} ${s.pressure}`}>Pressure</span>
+        <span className={`${s.title} ${s.humidity}`}>Humidity</span>
         <span className={s.title}>Wind</span>
-        <span className={s.title}>Precipitation</span>
-        <span className={s.title}>
-          Precipitation <br /> chance
-        </span>
+        <span className={`${s.title} ${s.precipitation}`}>Precipitation</span>
+        <span className={`${s.title} ${s.windchill}`}>Windchill</span>
         {dayParts.map(v => {
           const {
             is_day,
@@ -49,14 +48,12 @@ export const Card: React.FC<IForecast> = ({ date: dt, hour }) => {
             humidity,
             pressure_mb,
             precip_mm,
-            chance_of_rain,
-            chance_of_snow,
+            windchill_c,
           } = v;
           const hour = new Date(time).getHours();
-          const temp = `${temp_c > 0 ? '+' : ''}${temp_c}`;
+          const temp = transformTemp(temp_c);
           const wind_mph = (wind_kph / 3.6).toFixed(1);
-          const precipChance = Math.max(chance_of_rain, chance_of_snow);
-
+          const windchill = transformTemp(windchill_c);
           const dayPart =
             hour === 1
               ? 'night'
@@ -93,13 +90,12 @@ export const Card: React.FC<IForecast> = ({ date: dt, hour }) => {
                 <span>{wind_mph}</span>
                 <span className={s.unit}>m/s</span>
               </div>
-              <div>
+              <div className={s.precipitation}>
                 <span>{precip_mm}</span>
                 <span className={s.unit}>mm</span>
               </div>
-              <div>
-                <span>{precipChance}</span>
-                <span className={s.unit}>%</span>
+              <div className={`${s.windchill} ${s.temp}`}>
+                <span>{windchill}</span>
               </div>
             </React.Fragment>
           );

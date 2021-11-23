@@ -34,7 +34,6 @@ export const Astronomy: React.FC = () => {
           <span>{date}</span>
         </div>
       </div>
-
       <div className={s.main}>
         <div className={s.sun}>
           <div className={s.icon}>

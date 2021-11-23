@@ -24,3 +24,13 @@
   font-weight: 700;
   white-space: nowrap;
 }
+
+@media screen and (max-width: 700px) {
+  .header {
+    justify-content: center;
+    padding: 10px;
+  }
+  .powered {
+    display: none;
+  }
+}

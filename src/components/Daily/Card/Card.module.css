@@ -44,7 +44,9 @@
 .main {
   display: grid;
   height: 100%;
-  grid-template-columns: 70px 120px auto repeat(5, minmax(110px, 200px));
+  grid-template-columns:
+    minmax(50px, 70px) minmax(70px, 100px) minmax(70px, auto)
+    repeat(5, minmax(70px, 200px));
   grid-template-rows: repeat(5, 1fr);
   align-items: center;
   justify-items: center;
@@ -85,4 +87,79 @@
 .unit {
   font-size: 14px;
   opacity: 0.7;
+}
+
+@media screen and (max-width: 780px) {
+  .title {
+    font-size: 13px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .pressure,
+  .humidity {
+    display: none;
+  }
+
+  .main {
+    grid-template-columns:
+      minmax(50px, 70px) minmax(70px, 100px) minmax(70px, auto)
+      repeat(3, minmax(70px, 200px));
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .condition {
+    display: none;
+  }
+  .main {
+    grid-template-columns:
+      minmax(50px, 70px) minmax(70px, 100px)
+      repeat(3, minmax(70px, 200px));
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .precipitation {
+    display: none;
+  }
+
+  .main {
+    padding: 0;
+    grid-template-columns:
+      minmax(50px, 70px) minmax(70px, 100px)
+      repeat(2, minmax(70px, 200px));
+    margin-top: -60px;
+  }
+
+  .tempWrap {
+    justify-self: center;
+  }
+
+  .day span {
+    font-size: 36px;
+  }
+
+  .weekdayMonth span {
+    font-size: 11px;
+    line-height: unset;
+  }
+
+  .icon,
+  .icon img {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media screen and (max-width: 330px) {
+  .windchill {
+    display: none;
+  }
+  .main {
+    padding: 0;
+    grid-template-columns:
+      minmax(50px, 70px) minmax(70px, 100px)
+      minmax(70px, 200px);
+  }
 }
