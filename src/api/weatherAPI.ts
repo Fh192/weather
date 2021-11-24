@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import {
+  IAstronomyResponse,
   ICoords,
   IForecastDays,
   IForecastResponse,
@@ -20,10 +21,18 @@ export const weatherAPI = createApi({
       query: ({ coords, days = 3 }) =>
         `forecast.json?key=${API_KEY}&q=${`${coords.lat} ${coords.lon}`}&days=${days}&aqi=yes`,
     }),
+    getAstronomyForecast: b.query<IAstronomyResponse, ICoords>({
+      query: coords =>
+        `http://api.weatherapi.com/v1/astronomy.json?key=${API_KEY}&q=${`${coords.lat} ${coords.lon}`}`,
+    }),
     search: b.query<ISearch[], string>({
       query: location => `search.json?key=${API_KEY}&q=${location}`,
     }),
   }),
 });
 
-export const { useGetWeatherForecastQuery, useSearchQuery } = weatherAPI;
+export const {
+  useGetWeatherForecastQuery,
+  useSearchQuery,
+  useGetAstronomyForecastQuery,
+} = weatherAPI;

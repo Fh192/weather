@@ -1,6 +1,9 @@
 import React from 'react';
 import s from './Astronomy.module.css';
-import { useGetWeatherForecastQuery } from '../../api/weatherAPI';
+import {
+  useGetWeatherForecastQuery,
+  useGetAstronomyForecastQuery,
+} from '../../api/weatherAPI';
 import { useSelector } from '../../hooks/useSelector';
 import sun from '../../assets/sun.svg';
 import { RootState } from '../../store/store';
@@ -9,12 +12,17 @@ import { getMoonIconByPhase } from '../../services/getMoonIconByPhase';
 export const Astronomy: React.FC = () => {
   const { coords } = useSelector((s: RootState) => s.weatherParams);
   const { data: forecast } = useGetWeatherForecastQuery({ coords, days: 1 });
-  if (!forecast) return null;
+  const { data: astronomy } = useGetAstronomyForecastQuery(coords);
+
+  if (!forecast || !astronomy) return null;
+
   const {
-    astro: { moon_phase, moonrise, moonset, sunrise, sunset },
-    date: dt,
-    day: { uv },
-  } = forecast.forecast.forecastday[0];
+    location: { localtime: dt },
+    astronomy: {
+      astro: { moon_phase, moonrise, moonset, sunrise, sunset },
+    },
+  } = astronomy;
+  const uv = forecast.forecast.forecastday[0].day.uv;
   const date = new Date(dt).toLocaleDateString('en', {
     weekday: 'short',
     day: '2-digit',

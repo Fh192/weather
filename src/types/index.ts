@@ -19,6 +19,7 @@ export interface ILocation {
   country: string;
   lat: number;
   lon: number;
+  localtime: string;
 }
 
 export interface Condition {
@@ -83,6 +84,13 @@ export interface IWeatherResponse {
 export interface IForecastResponse extends IWeatherResponse {
   forecast: {
     forecastday: IForecast[];
+  };
+}
+
+export interface IAstronomyResponse {
+  location: ILocation;
+  astronomy: {
+    astro: IAstro;
   };
 }
 
