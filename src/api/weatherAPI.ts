@@ -5,7 +5,6 @@ import {
   IForecastDays,
   IForecastResponse,
   ISearch,
-  IWeatherResponse,
 } from '../types';
 
 const API_KEY = 'a343e898437e4e44bc3101151211811';
@@ -23,7 +22,7 @@ export const weatherAPI = createApi({
     }),
     getAstronomyForecast: b.query<IAstronomyResponse, ICoords>({
       query: coords =>
-        `http://api.weatherapi.com/v1/astronomy.json?key=${API_KEY}&q=${`${coords.lat} ${coords.lon}`}`,
+        `astronomy.json?key=${API_KEY}&q=${`${coords.lat} ${coords.lon}`}`,
     }),
     search: b.query<ISearch[], string>({
       query: location => `search.json?key=${API_KEY}&q=${location}`,
