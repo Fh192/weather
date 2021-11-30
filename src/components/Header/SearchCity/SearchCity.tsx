@@ -8,20 +8,18 @@ import { useDispatch } from 'react-redux';
 import { setCity, setCoords } from '../../../store/reducers/weatherParamsSlice';
 import { useNavigate } from 'react-router';
 import { ICoords } from '../../../types';
-import { useSelector } from '../../../hooks/useSelector';
 
 export const SearchCity: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { lat, lon } = useSelector(s => s.weatherParams.coords);
   const ref = useRef<HTMLDivElement>(null);
   const [searchCity, setSearchCity] = useState('');
   const [suggestionsVisible, setSuggestionsVisible] = useState(false);
 
-  const { data: suggestions = [], isFetching } = useSearchQuery(
-    searchCity.length >= 3 ? searchCity : `${lat} ${lon}`
-  );
+  const { data: suggestions = [], isFetching } = useSearchQuery(searchCity, {
+    skip: searchCity.length < 3,
+  });
 
   const inputClickHandler = () => {
     if (!!suggestions.length) {
@@ -42,16 +40,10 @@ export const SearchCity: React.FC = () => {
   };
 
   useEffect(() => {
-    if (!!suggestions.length) {
+    if (!!suggestions.length && searchCity.length >= 3) {
       setSuggestionsVisible(true);
-    }
-  }, [suggestions]);
-
-  useEffect(() => {
-    if (!searchCity.length) {
-      setSuggestionsVisible(false);
-    }
-  }, [searchCity, suggestionsVisible]);
+    } else setSuggestionsVisible(false);
+  }, [suggestions, searchCity]);
 
   useOnClickOutside(ref, () => setSuggestionsVisible(false));
 
