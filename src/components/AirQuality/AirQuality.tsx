@@ -14,7 +14,7 @@ export const AirQuality: React.FC = () => {
 
   const date = new Date(last_updated).toLocaleDateString('en', {
     weekday: 'short',
-    day: '2-digit',
+    day: 'numeric',
     month: 'short',
   });
 

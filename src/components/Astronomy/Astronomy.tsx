@@ -25,7 +25,7 @@ export const Astronomy: React.FC = () => {
   const uv = forecast.forecast.forecastday[0].day.uv;
   const date = new Date(dt).toLocaleDateString('en', {
     weekday: 'short',
-    day: '2-digit',
+    day: 'numeric',
     month: 'short',
   });
 
