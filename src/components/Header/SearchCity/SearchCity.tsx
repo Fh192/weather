@@ -1,13 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
-import s from './SearchCity.module.css';
-import searchIcon from '../../../assets/search.svg';
-import { useSearchQuery } from '../../../api/weatherAPI';
-import useOnClickOutside from '../../../hooks/useOnClickOutside';
-import { Preloader } from '../../Preloader/Preloader';
 import { useDispatch } from 'react-redux';
-import { setCity, setCoords } from '../../../store/reducers/weatherParamsSlice';
 import { useNavigate } from 'react-router';
+import { useSearchQuery } from '../../../api/weatherAPI';
+import searchIcon from '../../../assets/search.svg';
+import { useDebounce } from '../../../hooks/useDebounce';
+import useOnClickOutside from '../../../hooks/useOnClickOutside';
+import { setCity, setCoords } from '../../../store/reducers/weatherParamsSlice';
 import { ICoords } from '../../../types';
+import { Preloader } from '../../Preloader/Preloader';
+import s from './SearchCity.module.css';
 
 export const SearchCity: React.FC = () => {
   const dispatch = useDispatch();
@@ -15,11 +16,13 @@ export const SearchCity: React.FC = () => {
 
   const ref = useRef<HTMLDivElement>(null);
   const [searchCity, setSearchCity] = useState('');
+  const debouncedSearchCity = useDebounce<string>(searchCity, 500);
   const [suggestionsVisible, setSuggestionsVisible] = useState(false);
 
-  const { data: suggestions = [], isFetching } = useSearchQuery(searchCity, {
-    skip: searchCity.length < 3,
-  });
+  const { data: suggestions = [], isFetching } = useSearchQuery(
+    debouncedSearchCity,
+    { skip: debouncedSearchCity.length < 3 }
+  );
 
   const inputClickHandler = () => {
     if (!!suggestions.length) {
@@ -59,7 +62,7 @@ export const SearchCity: React.FC = () => {
           type='text'
           value={searchCity}
           placeholder='Search city'
-          onChange={e => setSearchCity(e.currentTarget.value)}
+          onChange={e => setSearchCity(e.target.value)}
           onClick={inputClickHandler}
         />
         <img src={searchIcon} alt='search' />
