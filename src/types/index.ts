@@ -110,4 +110,5 @@ export type IMoonPhase =
   | 'Full Moon'
   | 'Waning Gibbous'
   | 'Last Quarter'
+  | 'Third Quarter'
   | 'Waning Crescent';
