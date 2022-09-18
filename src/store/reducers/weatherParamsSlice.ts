@@ -2,9 +2,9 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ICoords } from '../../types';
 
 const initialState = {
-  city: localStorage.getItem('city') || 'moscow',
+  city: localStorage.getItem('city') ?? 'moscow',
   coords: JSON.parse(
-    localStorage.getItem('coords') || '{ "lat": 55.75, "lon": 37.62 }'
+    localStorage.getItem('coords') ?? '{ "lat": 55.75, "lon": 37.62 }'
   ) as ICoords,
 };
 

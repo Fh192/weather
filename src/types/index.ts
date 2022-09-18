@@ -60,7 +60,7 @@ export interface IDay {
   daily_chance_of_rain: number; // %
   daily_chance_of_snow: number; // %
   condition: Condition;
-  uv: 1.0;
+  uv: number;
 }
 
 export interface ICurrentWeather extends ICommon {
@@ -112,3 +112,12 @@ export type IMoonPhase =
   | 'Last Quarter'
   | 'Third Quarter'
   | 'Waning Crescent';
+
+export type IAirQualityUsEpaCategory =
+  | 'Good'
+  | 'Moderate'
+  | 'Unhealthy'
+  | 'Very Unhealthy'
+  | 'Hazardous';
+
+export type UvIndex = 'Very hight' | 'Hight' | 'Moderate' | 'Low';

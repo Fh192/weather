@@ -9,6 +9,7 @@ import { setCity, setCoords } from '../../../store/reducers/weatherParamsSlice';
 import { ICoords } from '../../../types';
 import { Preloader } from '../../Preloader/Preloader';
 import s from './SearchCity.module.css';
+import { Suggestion } from './Suggestion/Suggestion';
 
 export const SearchCity: React.FC = () => {
   const dispatch = useDispatch();
@@ -18,14 +19,15 @@ export const SearchCity: React.FC = () => {
   const [searchCity, setSearchCity] = useState('');
   const debouncedSearchCity = useDebounce<string>(searchCity, 500);
   const [suggestionsVisible, setSuggestionsVisible] = useState(false);
+  const [searchHistory, setSearchHistory] = useState<string[]>([]);
 
   const { data: suggestions = [], isFetching } = useSearchQuery(
     debouncedSearchCity,
     { skip: debouncedSearchCity.length < 3 }
   );
 
-  const inputClickHandler = () => {
-    if (!!suggestions.length) {
+  const inputFocusHandler = () => {
+    if (suggestions.length) {
       setSuggestionsVisible(true);
     }
   };
@@ -36,6 +38,7 @@ export const SearchCity: React.FC = () => {
 
     dispatch(setCity(suggestion));
     dispatch(setCoords(coords));
+    setSearchHistory((history) => [...history, suggestion]);
 
     setSearchCity('');
     setSuggestionsVisible(false);
@@ -59,34 +62,31 @@ export const SearchCity: React.FC = () => {
         }}
       >
         <input
-          type='text'
+          type="text"
           value={searchCity}
-          placeholder='Search city'
-          onChange={e => setSearchCity(e.target.value)}
-          onClick={inputClickHandler}
+          placeholder="Search city"
+          onChange={(e) => setSearchCity(e.target.value)}
+          onFocus={inputFocusHandler}
         />
-        <img src={searchIcon} alt='search' />
+        <img src={searchIcon} alt="search" />
       </div>
       {suggestionsVisible && (
         <ul className={s.suggestions}>
-          {!isFetching ? (
-            !!suggestions.length ? (
-              suggestions.map(s => (
-                <li
-                  key={s.id}
-                  onClick={() =>
-                    suggestionSelectHandler(s.name, { lat: s.lat, lon: s.lon })
-                  }
-                >
-                  {s.name}
-                </li>
-              ))
-            ) : (
-              <span className={s.noResults}>No results</span>
-            )
-          ) : (
-            <Preloader />
+          {isFetching && <Preloader />}
+
+          {!suggestions.length && (
+            <span className={s.noResults}>No results</span>
           )}
+
+          {suggestions.map((s) => (
+            <Suggestion
+              key={s.id}
+              suggestion={s.name}
+              onSelect={() =>
+                suggestionSelectHandler(s.name, { lat: s.lat, lon: s.lon })
+              }
+            />
+          ))}
         </ul>
       )}
     </div>

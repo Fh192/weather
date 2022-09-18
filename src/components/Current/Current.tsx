@@ -1,20 +1,20 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router';
 import { useGetWeatherForecastQuery } from '../../api/weatherAPI';
-import { Preloader } from '../Preloader/Preloader';
-import s from './Current.module.css';
-import { getWeatherIcon } from '../../services/getWeatherIcon';
+import geolocation from '../../assets/geolocation.svg';
 import humidityIcon from '../../assets/weatherParamIcons/humidity.svg';
 import pressureIcon from '../../assets/weatherParamIcons/pressure.svg';
 import windIcon from '../../assets/weatherParamIcons/wind.svg';
-import { getWeatherBackground } from '../../services/getWeatherBackground';
-import { Hourly } from './Hourly/Hourly';
 import { useSelector } from '../../hooks/useSelector';
+import { getWeatherBackground } from '../../services/getWeatherBackground';
 import { getWeatherCondition } from '../../services/getWeatherCondition';
-import geolocation from '../../assets/geolocation.svg';
-import { setCity, setCoords } from '../../store/reducers/weatherParamsSlice';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router';
+import { getWeatherIcon } from '../../services/getWeatherIcon';
 import { transformTemp } from '../../services/transformTemp';
+import { setCity, setCoords } from '../../store/reducers/weatherParamsSlice';
+import { Preloader } from '../Preloader/Preloader';
+import s from './Current.module.css';
+import { Hourly } from './Hourly/Hourly';
 
 export const Current: React.FC = () => {
   const dispatch = useDispatch();
@@ -27,6 +27,7 @@ export const Current: React.FC = () => {
   });
 
   if (!forecast) return null;
+
   const {
     location: { name, country },
     current: {
@@ -56,10 +57,14 @@ export const Current: React.FC = () => {
   const isSleet = getWeatherCondition(condition) === 'sleet';
 
   const getLocation = () => {
+    if (!navigator || !navigator.geolocation) return undefined;
+
     navigator.geolocation.getCurrentPosition(({ coords }) => {
       const { latitude, longitude } = coords;
+
       dispatch(setCoords({ lat: latitude, lon: longitude }));
       dispatch(setCity(name));
+
       navigate({ search: `?lat=${latitude}&lon=${longitude}` });
     });
   };
@@ -84,7 +89,7 @@ export const Current: React.FC = () => {
               </div>
             </div>
             <div className={s.location} onClick={getLocation}>
-              <img src={geolocation} alt='your location' />
+              <img src={geolocation} alt="your location" />
             </div>
           </div>
           <div className={s.main}>
@@ -95,7 +100,6 @@ export const Current: React.FC = () => {
               <div className={s.icon}>
                 <img src={getWeatherIcon(condition, is_day)} alt={condition} />
               </div>
-
               <div className={s.feelings}>
                 <div className={s.condition}>
                   <span>{condition}</span>
@@ -107,15 +111,15 @@ export const Current: React.FC = () => {
             </div>
             <div className={s.params}>
               <div className={s.param}>
-                <img src={windIcon} alt='wind' />
+                <img src={windIcon} alt="wind" />
                 <span>{`${wind_mph}m/s, ${wind_dir}`}</span>
               </div>
               <div className={s.param}>
-                <img src={humidityIcon} alt='humidity' />
+                <img src={humidityIcon} alt="humidity" />
                 <span>{humidity}%</span>
               </div>
               <div className={s.param}>
-                <img src={pressureIcon} alt='pressure' />
+                <img src={pressureIcon} alt="pressure" />
                 <span>{pressure_mb}hPa</span>
               </div>
             </div>

@@ -16,12 +16,12 @@ const App: React.FC = () => {
   }, [city]);
 
   return (
-    <div className='App'>
+    <div className="App">
       <Header />
-      <div className='container'>
+      <div className="container">
         <Routes>
-          <Route path='/forecast' element={<Main />} />
-          <Route path='*' element={<Navigate to='/forecast' />} />
+          <Route path="/forecast" element={<Main />} />
+          <Route path="*" element={<Navigate to="/forecast" />} />
         </Routes>
       </div>
     </div>

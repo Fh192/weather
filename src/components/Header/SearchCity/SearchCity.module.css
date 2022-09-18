@@ -38,17 +38,6 @@
   overflow: hidden;
 }
 
-.suggestions li {
-  font-weight: 600;
-  font-size: 15px;
-  cursor: pointer;
-  padding: 7px 20px;
-}
-
-.suggestions li:hover {
-  background: #eceef2;
-}
-
 .noResults {
   display: flex;
   align-items: center;

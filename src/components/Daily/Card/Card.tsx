@@ -10,10 +10,17 @@ export const Card: React.FC<IForecast> = ({ date: dt, hour }) => {
   const weekday = date.toLocaleDateString('en', { weekday: 'long' });
   const month = date.toLocaleDateString('en', { month: 'long' });
 
-  const dayParts = hour.filter(v => {
+  const dayParts = hour.filter((v) => {
     const hour = new Date(v.time).getHours();
     return hour === 1 || hour === 8 || hour === 13 || hour === 18;
   });
+
+  const getDayPart = (hour: number) => {
+    if (hour === 1) return 'night';
+    if (hour === 8) return 'morning';
+    if (hour === 13) return 'day';
+    return 'evening';
+  };
 
   return (
     <div className={s.card}>
@@ -38,68 +45,61 @@ export const Card: React.FC<IForecast> = ({ date: dt, hour }) => {
         <span className={s.title}>Wind</span>
         <span className={`${s.title} ${s.precipitation}`}>Precipitation</span>
         <span className={`${s.title} ${s.windchill}`}>Windchill</span>
-        {dayParts.map(v => {
-          const {
+        {dayParts.map(
+          ({
             is_day,
             condition: { text: condition },
-            time,
-            temp_c,
-            wind_kph,
             humidity,
             pressure_mb,
             precip_mm,
-            windchill_c,
-          } = v;
-          const hour = new Date(time).getHours();
-          const temp = transformTemp(temp_c);
-          const wind_mph = (wind_kph / 3.6).toFixed(1);
-          const windchill = transformTemp(windchill_c);
-          const dayPart =
-            hour === 1
-              ? 'night'
-              : hour === 8
-              ? 'morning'
-              : hour === 13
-              ? 'day'
-              : 'evening';
+            time,
+            ...v
+          }) => {
+            const temp = transformTemp(v.temp_c);
+            const wind_mph = (v.wind_kph / 3.6).toFixed(1);
+            const windchill = transformTemp(v.windchill_c);
+            const dayPart = getDayPart(new Date(time).getHours());
 
-          return (
-            <React.Fragment key={time}>
-              <div className={s.tempWrap}>
-                <div className={s.dayPart}>{dayPart}</div>
-                <div className={s.temp}>
-                  <span>{temp}</span>
+            return (
+              <React.Fragment key={time}>
+                <div className={s.tempWrap}>
+                  <div className={s.dayPart}>{dayPart}</div>
+                  <div className={s.temp}>
+                    <span>{temp}</span>
+                  </div>
                 </div>
-              </div>
-
-              <div className={s.icon}>
-                <img src={getWeatherIcon(condition, is_day)} alt={condition} />
-              </div>
-              <div className={s.condition}>
-                <span>{condition}</span>
-              </div>
-              <div className={s.pressure}>
-                <span>{pressure_mb}</span>
-                <span className={s.unit}>mb</span>
-              </div>
-              <div className={s.humidity}>
-                <span>{humidity}</span>
-                <span className={s.unit}>%</span>
-              </div>
-              <div className={s.wind}>
-                <span>{wind_mph}</span>
-                <span className={s.unit}>m/s</span>
-              </div>
-              <div className={s.precipitation}>
-                <span>{precip_mm}</span>
-                <span className={s.unit}>mm</span>
-              </div>
-              <div className={`${s.windchill} ${s.temp}`}>
-                <span>{windchill}</span>
-              </div>
-            </React.Fragment>
-          );
-        })}
+                <div className={s.icon}>
+                  <img
+                    src={getWeatherIcon(condition, is_day)}
+                    alt={condition}
+                  />
+                </div>
+                <div className={s.condition}>
+                  <span>{condition}</span>
+                </div>
+                <div className={s.pressure}>
+                  <span>{pressure_mb}</span>
+                  <span className={s.unit}>mb</span>
+                </div>
+                <div className={s.humidity}>
+                  <span>{humidity}</span>
+                  <span className={s.unit}>%</span>
+                </div>
+                <div className={s.wind}>
+                  <span>{wind_mph}</span>
+                  <span className={s.unit}>m/s</span>
+                </div>
+                <div className={s.precipitation}>
+                  <span>{precip_mm}</span>
+                  <span className={s.unit}>mm</span>
+                </div>
+                <div className={`${s.windchill} ${s.temp}`}>
+                  <span>{windchill}</span>
+                </div>
+              </React.Fragment>
+            );
+          }
+        )}
       </div>
     </div>
   );

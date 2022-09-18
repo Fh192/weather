@@ -4,7 +4,7 @@ import { useSelector } from '../../hooks/useSelector';
 import s from './AirQuality.module.css';
 
 export const AirQuality: React.FC = () => {
-  const { coords } = useSelector(s => s.weatherParams);
+  const { coords } = useSelector((s) => s.weatherParams);
   const { data: forecast } = useGetWeatherForecastQuery({ coords, days: 1 });
 
   if (!forecast) return null;
@@ -56,23 +56,23 @@ export const AirQuality: React.FC = () => {
           </span>
         </div>
         <div className={s.params}>
-          <div className={s.param} title='Ozon'>
+          <div className={s.param} title="Ozon">
             <span>
               O<sub>3</sub>
             </span>
             <span>{`${o3.toFixed(1)} (μg/m3)`}</span>
           </div>
-          <div className={s.param} title='Nitric oxide'>
+          <div className={s.param} title="Nitric oxide">
             <span>
               NO<sub>2</sub>
             </span>
             <span>{`${no2.toFixed(1)} (μg/m3)`}</span>
           </div>
-          <div className={s.param} title='Carbon monoxide'>
+          <div className={s.param} title="Carbon monoxide">
             <span>CO</span>
             <span>{`${co.toFixed(1)} (μg/m3)`}</span>
           </div>
-          <div className={s.param} title='Sulfur oxide'>
+          <div className={s.param} title="Sulfur oxide">
             <span>
               SO<sub>2</sub>
             </span>

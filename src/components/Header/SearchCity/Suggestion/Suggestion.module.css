@@ -1,0 +1,10 @@
+.suggestion {
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  padding: 7px 20px;
+}
+
+.suggestion:hover {
+  background: #eceef2;
+}

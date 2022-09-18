@@ -8,15 +8,26 @@ import waxingCrescent from '../assets/moonPhases/waxingCrescent.svg';
 import waxingGibbous from '../assets/moonPhases/waxingGibbous.svg';
 import { IMoonPhase } from '../types';
 
-export const getMoonIconByPhase = (phase: IMoonPhase) => {
-  if (phase === 'New Moon') return newMoon;
-  if (phase === 'Waning Crescent') return waningCrescent;
-  if (phase === 'First Quarter') return firstQuarter;
-  if (phase === 'Waxing Gibbous') return waxingGibbous;
-  if (phase === 'Full Moon') return fullMoon;
-  if (phase === 'Waning Gibbous') return waningGibbous;
-  if (phase === 'Last Quarter' || phase === 'Third Quarter') return lastQuarter;
-  if (phase === 'Waxing Crescent') return waxingCrescent;
-
-  return newMoon;
+export const getMoonIconByPhase = (phase: IMoonPhase): string => {
+  switch (phase) {
+    case 'New Moon':
+      return newMoon;
+    case 'Waning Crescent':
+      return waningCrescent;
+    case 'First Quarter':
+      return firstQuarter;
+    case 'Waxing Gibbous':
+      return waxingGibbous;
+    case 'Full Moon':
+      return fullMoon;
+    case 'Waning Gibbous':
+      return waningGibbous;
+    case 'Last Quarter':
+    case 'Third Quarter':
+      return lastQuarter;
+    case 'Waxing Crescent':
+      return waxingCrescent;
+    default:
+      return newMoon;
+  }
 };

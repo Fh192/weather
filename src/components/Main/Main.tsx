@@ -16,12 +16,11 @@ export const Main: React.FC = () => {
 
   const query = useQuery();
   const { coords } = useSelector(s => s.weatherParams);
-  const lat = Number(query.get('lat')) || coords.lat;
-  const lon = Number(query.get('lon')) || coords.lon;
+  const lat = Number(query.get('lat')) ?? coords.lat;
+  const lon = Number(query.get('lon')) ?? coords.lon;
 
   useEffect(() => {
     dispatch(setCoords({ lat, lon }));
-    setCoords({ lat, lon });
     navigate({ search: `?lat=${lat}&lon=${lon}` });
   }, [lat, lon, navigate, dispatch]);
 
