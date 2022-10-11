@@ -1,0 +1,3 @@
+describe('weatherAPI', () => {
+  it('', () => {});
+});

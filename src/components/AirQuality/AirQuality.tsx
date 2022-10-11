@@ -1,10 +1,11 @@
 import React from 'react';
-import { useGetWeatherForecastQuery } from '../../api/weatherAPI';
+import { useGetWeatherForecastQuery } from '../../api/weatherAPI/weatherAPI';
 import { useSelector } from '../../hooks/useSelector';
+import { getUsEpaCategoryByIndex } from '../../services/getUsEpaCategoryByIndex/getUsEpaCategoryByIndex';
 import s from './AirQuality.module.css';
 
 export const AirQuality: React.FC = () => {
-  const { coords } = useSelector((s) => s.weatherParams);
+  const { coords } = useSelector(s => s.weatherParams);
   const { data: forecast } = useGetWeatherForecastQuery({ coords, days: 1 });
 
   if (!forecast) return null;
@@ -19,18 +20,7 @@ export const AirQuality: React.FC = () => {
   });
 
   const US_EPA_Index = air_quality['us-epa-index'];
-  const US_EPA_Category =
-    US_EPA_Index === 1
-      ? 'Good'
-      : US_EPA_Index === 2
-      ? 'Moderate'
-      : US_EPA_Index === 3
-      ? 'Unhealthy'
-      : US_EPA_Index === 4
-      ? 'Unhealthy'
-      : US_EPA_Index === 5
-      ? 'Very Unhealthy'
-      : 'Hazardous';
+  const US_EPA_Category = getUsEpaCategoryByIndex(US_EPA_Index);
 
   return (
     <div className={s.airQuality}>

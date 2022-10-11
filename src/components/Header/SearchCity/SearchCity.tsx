@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
-import { useSearchQuery } from '../../../api/weatherAPI';
+import { useSearchQuery } from '../../../api/weatherAPI/weatherAPI';
 import searchIcon from '../../../assets/search.svg';
 import { useDebounce } from '../../../hooks/useDebounce';
 import useOnClickOutside from '../../../hooks/useOnClickOutside';
-import { setCity, setCoords } from '../../../store/reducers/weatherParamsSlice';
+import { setCity, setCoords } from '../../../store/reducers/weatherParamsSlice/weatherParamsSlice';
 import { ICoords } from '../../../types';
 import { Preloader } from '../../Preloader/Preloader';
 import s from './SearchCity.module.css';

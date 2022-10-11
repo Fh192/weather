@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import { weatherAPI } from '../../api/weatherAPI';
-import { weatherParamsSlice } from './weatherParamsSlice';
+import { weatherAPI } from '../../api/weatherAPI/weatherAPI';
+import weatherParamsReducer from './weatherParamsSlice/weatherParamsSlice';
 
 export const rootReducer = combineReducers({
   [weatherAPI.reducerPath]: weatherAPI.reducer,
-  weatherParams: weatherParamsSlice.reducer,
+  weatherParams: weatherParamsReducer,
 });

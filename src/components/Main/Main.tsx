@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { useQuery } from '../../hooks/useQuery';
 import { useSelector } from '../../hooks/useSelector';
-import { setCoords } from '../../store/reducers/weatherParamsSlice';
+import { setCoords } from '../../store/reducers/weatherParamsSlice/weatherParamsSlice';
 import { AirQuality } from '../AirQuality/AirQuality';
 import { Astronomy } from '../Astronomy/Astronomy';
 import { Current } from '../Current/Current';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useGetWeatherForecastQuery } from '../../api/weatherAPI';
+import { useGetWeatherForecastQuery } from '../../api/weatherAPI/weatherAPI';
 import { useSelector } from '../../hooks/useSelector';
 import { Card } from './Card/Card';
 import s from './Daily.module.css';

@@ -121,3 +121,4 @@ export type IAirQualityUsEpaCategory =
   | 'Hazardous';
 
 export type UvIndex = 'Very hight' | 'Hight' | 'Moderate' | 'Low';
+export type DayPart = 'night' | 'morning' | 'day' | 'evening';

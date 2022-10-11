@@ -6,4 +6,6 @@ export const getWeatherCondition = (condition: string) => {
   } else if (c.includes('snow') || c.includes('ice')) {
     return 'snow';
   } else if (c.includes('sleet')) return 'sleet';
+
+  return undefined;
 };

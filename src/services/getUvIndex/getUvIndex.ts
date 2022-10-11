@@ -1,4 +1,4 @@
-import { IDay, UvIndex } from '../types';
+import { IDay, UvIndex } from '../../types';
 
 export const getUvIndex = (uv: IDay['uv']): UvIndex => {
   if (uv >= 9) return 'Very hight';

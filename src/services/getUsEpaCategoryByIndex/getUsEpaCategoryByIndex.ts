@@ -1,4 +1,4 @@
-import { IAirQuality, IAirQualityUsEpaCategory } from '../types';
+import { IAirQuality, IAirQualityUsEpaCategory } from '../../types';
 
 export const getUsEpaCategoryByIndex = (
   index: IAirQuality['us-epa-index']

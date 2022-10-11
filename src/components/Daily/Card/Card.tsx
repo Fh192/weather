@@ -1,6 +1,7 @@
 import React from 'react';
-import { getWeatherIcon } from '../../../services/getWeatherIcon';
-import { transformTemp } from '../../../services/transformTemp';
+import { getDayPart } from '../../../services/getDayPart/getDayPart';
+import { getWeatherIcon } from '../../../services/getWeatherIcon/getWeatherIcon';
+import { transformTemp } from '../../../services/transformTemp/transformTemp';
 import { IForecast } from '../../../types';
 import s from './Card.module.css';
 
@@ -10,17 +11,10 @@ export const Card: React.FC<IForecast> = ({ date: dt, hour }) => {
   const weekday = date.toLocaleDateString('en', { weekday: 'long' });
   const month = date.toLocaleDateString('en', { month: 'long' });
 
-  const dayParts = hour.filter((v) => {
+  const dayParts = hour.filter(v => {
     const hour = new Date(v.time).getHours();
     return hour === 1 || hour === 8 || hour === 13 || hour === 18;
   });
-
-  const getDayPart = (hour: number) => {
-    if (hour === 1) return 'night';
-    if (hour === 8) return 'morning';
-    if (hour === 13) return 'day';
-    return 'evening';
-  };
 
   return (
     <div className={s.card}>

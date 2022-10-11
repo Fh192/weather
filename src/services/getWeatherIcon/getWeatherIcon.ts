@@ -1,24 +1,24 @@
-import clearDay from '../assets/weatherIcons/clear-day.svg';
-import clearNight from '../assets/weatherIcons/clear-night.svg';
-import cloudy from '../assets/weatherIcons/cloudy.svg';
-import fogDay from '../assets/weatherIcons/fogDay.svg';
-import fogNight from '../assets/weatherIcons/fogNight.svg';
-import heavyShowers from '../assets/weatherIcons/heavy-showers.svg';
-import heavySleet from '../assets/weatherIcons/heavy-sleet.svg';
-import heavySnow from '../assets/weatherIcons/heavy-snow.svg';
+import clearDay from '../../assets/weatherIcons/clear-day.svg';
+import clearNight from '../../assets/weatherIcons/clear-night.svg';
+import cloudy from '../../assets/weatherIcons/cloudy.svg';
+import fogDay from '../../assets/weatherIcons/fogDay.svg';
+import fogNight from '../../assets/weatherIcons/fogNight.svg';
+import heavyShowers from '../../assets/weatherIcons/heavy-showers.svg';
+import heavySleet from '../../assets/weatherIcons/heavy-sleet.svg';
+import heavySnow from '../../assets/weatherIcons/heavy-snow.svg';
 import {
   default as overcastDay,
   default as overcastNight,
-} from '../assets/weatherIcons/overcastDay.svg';
-import partlyCloudyDay from '../assets/weatherIcons/partly-cloudy-day.svg';
-import partlyCloudyNight from '../assets/weatherIcons/partly-cloudy-night.svg';
-import rain from '../assets/weatherIcons/showers.svg';
-import sleet from '../assets/weatherIcons/sleet.svg';
-import snow from '../assets/weatherIcons/snow.svg';
-import thunderstormShowers from '../assets/weatherIcons/thunderstorm-showers.svg';
-import thunderstormSnow from '../assets/weatherIcons/thunderstorm-snow.svg';
+} from '../../assets/weatherIcons/overcastDay.svg';
+import partlyCloudyDay from '../../assets/weatherIcons/partly-cloudy-day.svg';
+import partlyCloudyNight from '../../assets/weatherIcons/partly-cloudy-night.svg';
+import rain from '../../assets/weatherIcons/showers.svg';
+import sleet from '../../assets/weatherIcons/sleet.svg';
+import snow from '../../assets/weatherIcons/snow.svg';
+import thunderstormShowers from '../../assets/weatherIcons/thunderstorm-showers.svg';
+import thunderstormSnow from '../../assets/weatherIcons/thunderstorm-snow.svg';
 
-const isSnowy = (condition: string) => {
+export const isSnowy = (condition: string) => {
   return (
     condition.includes('snow') ||
     condition.includes('blizzard') ||
@@ -26,19 +26,22 @@ const isSnowy = (condition: string) => {
   );
 };
 
-const isRainy = (condition: string): boolean => {
+export const isRainy = (condition: string): boolean => {
   return condition.includes('rain') || condition.includes('drizzle');
 };
 
-const isFoggy = (condition: string): boolean => {
+export const isFoggy = (condition: string): boolean => {
   return condition.includes('mist') || condition.includes('fog');
 };
 
-const isHeavy = (condition: string, precipitation: string = ''): boolean => {
+export const isHeavy = (
+  condition: string,
+  precipitation: string = ''
+): boolean => {
   return condition.includes('heavy') && condition.includes(precipitation);
 };
 
-const isThunder = (condition: string): boolean => {
+export const isThunder = (condition: string): boolean => {
   return condition.includes('thunder');
 };
 

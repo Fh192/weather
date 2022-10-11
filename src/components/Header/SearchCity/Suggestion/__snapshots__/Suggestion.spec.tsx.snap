@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Suggestion.tsx renders correctly 1`] = `
+<div>
+  <li
+    class="suggestion"
+  >
+    Saint Petersburg
+  </li>
+</div>
+`;
+
+exports[`Suggestion.tsx renders with "Saint Petersburg" suggestion`] = `
+<div>
+  <li
+    class="suggestion"
+  >
+    Saint Petersburg
+  </li>
+</div>
+`;

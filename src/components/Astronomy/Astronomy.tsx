@@ -2,12 +2,12 @@ import React from 'react';
 import {
   useGetAstronomyForecastQuery,
   useGetWeatherForecastQuery,
-} from '../../api/weatherAPI';
+} from '../../api/weatherAPI/weatherAPI';
 import sun from '../../assets/sun.svg';
 import { useSelector } from '../../hooks/useSelector';
-import { getMoonIconByPhase } from '../../services/getMoonIconByPhase';
-import { getUvIndex } from '../../services/getUvIndex';
-import { RootState } from '../../store/store';
+import { getMoonIconByPhase } from '../../services/getMoonIconByPhase/getMoonIconByPhase';
+import { getUvIndex } from '../../services/getUvIndex/getUvIndex';
+import { RootState } from '../../store';
 import s from './Astronomy.module.css';
 
 export const Astronomy: React.FC = () => {

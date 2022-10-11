@@ -1,6 +1,6 @@
 import React from 'react';
-import { getWeatherIcon } from '../../../../services/getWeatherIcon';
-import { transformTemp } from '../../../../services/transformTemp';
+import { getWeatherIcon } from '../../../../services/getWeatherIcon/getWeatherIcon';
+import { transformTemp } from '../../../../services/transformTemp/transformTemp';
 import { IHour } from '../../../../types';
 import s from '../Hourly.module.css';
 

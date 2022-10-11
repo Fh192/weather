@@ -5,7 +5,7 @@ import {
   IForecastDays,
   IForecastResponse,
   ISearch,
-} from '../types';
+} from '../../types';
 
 const API_KEY = 'a343e898437e4e44bc3101151211811';
 

@@ -1,17 +1,20 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
-import { useGetWeatherForecastQuery } from '../../api/weatherAPI';
+import { useGetWeatherForecastQuery } from '../../api/weatherAPI/weatherAPI';
 import geolocation from '../../assets/geolocation.svg';
 import humidityIcon from '../../assets/weatherParamIcons/humidity.svg';
 import pressureIcon from '../../assets/weatherParamIcons/pressure.svg';
 import windIcon from '../../assets/weatherParamIcons/wind.svg';
 import { useSelector } from '../../hooks/useSelector';
-import { getWeatherBackground } from '../../services/getWeatherBackground';
-import { getWeatherCondition } from '../../services/getWeatherCondition';
-import { getWeatherIcon } from '../../services/getWeatherIcon';
-import { transformTemp } from '../../services/transformTemp';
-import { setCity, setCoords } from '../../store/reducers/weatherParamsSlice';
+import { getWeatherBackground } from '../../services/getWeatherBackground/getWeatherBackground';
+import { getWeatherCondition } from '../../services/getWeatherCondition/getWeatherCondition';
+import { getWeatherIcon } from '../../services/getWeatherIcon/getWeatherIcon';
+import { transformTemp } from '../../services/transformTemp/transformTemp';
+import {
+  setCity,
+  setCoords,
+} from '../../store/reducers/weatherParamsSlice/weatherParamsSlice';
 import { Preloader } from '../Preloader/Preloader';
 import s from './Current.module.css';
 import { Hourly } from './Hourly/Hourly';
@@ -33,7 +36,7 @@ export const Current: React.FC = () => {
     current: {
       last_updated,
       temp_c,
-      condition: { text: condition = 'sleet' },
+      condition: { text: condition },
       feelslike_c,
       is_day,
       wind_kph,
